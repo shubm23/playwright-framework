@@ -1,9 +1,9 @@
-import {type Page} from "@playwright/test";
-export async function goToShowcaseLibrary(page:Page) {
+import { type Page } from "@playwright/test";
+export async function goToShowcaseLibrary(page: Page) {
     await page.goto("/library/showcases");
 }
 
-export async function removeUpsellIfVisible(page:Page) {
+export async function removeUpsellIfVisible(page: Page) {
     const upsellMessage = page.locator('text="Upgrade to unlock more video tools"');
     const isUpsellVisible = await upsellMessage.isVisible();
     if (isUpsellVisible) {
@@ -14,7 +14,7 @@ export async function removeUpsellIfVisible(page:Page) {
     }
 }
 
-export async function removeOldShowcases(page:Page) {
+export async function removeOldShowcases(page: Page) {
     let actionCount = await page.locator('[data-testid="action-menu-button"]').count();
     while (actionCount > 0) {
         await page.click('[data-testid="action-menu-button"]');
@@ -24,7 +24,7 @@ export async function removeOldShowcases(page:Page) {
     }
 }
 
-export async function createNewShowcase(page:Page, title:string, description:string) {
+export async function createNewShowcase(page: Page, title: string, description: string) {
     await page.getByText("New showcase").click();
     await page.waitForTimeout(4000);
     await removeUpsellIfVisible(page);
@@ -34,7 +34,7 @@ export async function createNewShowcase(page:Page, title:string, description:str
     await page.click('[data-id="desktop-view-save-btn"]');
 }
 
-export async function configureAppearance(page:Page) {
+export async function configureAppearance(page: Page) {
     await page.getByRole('button', { name: 'Appearance' }).click();
     await page.locator('div').filter({ hasText: /^LayoutDark mode$/ }).locator('span').first().click();
     await page.getByRole('img', { name: 'Playlist layout' }).locator('path').nth(1).click();
@@ -42,7 +42,7 @@ export async function configureAppearance(page:Page) {
     await page.getByRole('button', { name: 'Save' }).click();
 }
 
-export async function deleteShowcaseIfExists(page:Page) {
+export async function deleteShowcaseIfExists(page: Page) {
     const saveButton = page.locator('[data-id="desktop-view-save-btn"]');
     if (await saveButton.isVisible()) {
         await page.getByRole("button", { name: "Cancel" }).click();

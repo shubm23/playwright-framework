@@ -1,7 +1,7 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  globalSetup: './globalSetup',
+  globalSetup: require.resolve('./fixtures/globalSetup'),
   testDir: './tests',
   timeout: 30 * 1000,
   retries: 1,
