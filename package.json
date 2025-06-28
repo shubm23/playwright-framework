@@ -1,0 +1,13 @@
+{
+  "name": "playwright-framework",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "npx playwright test",
+    "record": "playwright codegen https://vimeo.com"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.43.1",
+    "typescript": "^5.4.0",
+    "ts-node": "^10.9.1"
+  }
+}
